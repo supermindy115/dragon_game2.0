@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>龍 · Gentiana</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ==================== 開始畫面 ==================== -->
+  <div id="screen-start" class="screen active">
+    <div class="start-content">
+      <div class="flower-symbol">✦</div>
+      <h1 class="title-main">龍</h1>
+      <p class="title-sub">Gentiana</p>
+      <p class="title-quote">「寂靜的藍調，擁抱悲傷的靈魂」</p>
+      <button id="btn-start" class="btn-primary" onclick="startIntro()">進入夢境</button>
+    </div>
+    <div class="stars" id="stars"></div>
+  </div>
+
+  <!-- ==================== 過場敘事畫面 ==================== -->
+  <div id="screen-narration" class="screen">
+    <div class="narration-content">
+      <p id="narration-text" class="narration-text"></p>
+      <button id="btn-next-narration" class="btn-ghost" onclick="nextNarration()">繼續 ▸</button>
+    </div>
+    <div class="stars" id="stars2"></div>
+  </div>
+
+  <!-- ==================== 名字輸入畫面 ==================== -->
+  <div id="screen-name" class="screen">
+    <div class="name-content">
+      <div class="dragon-avatar">
+        <img src="dragon_avatar.svg" alt="龍" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" />
+      </div>
+      <div class="dragon-speech">
+        <p>你是誰？</p>
+        <p>我的回憶裡沒有你才對……難道是我遺忘了什麼嗎？</p>
+        <p class="dragon-pause">……抱歉，請問你的名字是？</p>
+      </div>
+      <div class="name-input-area">
+        <input
+          type="text"
+          id="player-name-input"
+          placeholder="我的名字是……"
+          maxlength="20"
+          onkeydown="if(event.key==='Enter') submitName()"
+        />
+        <button class="btn-primary" onclick="submitName()">回答</button>
+      </div>
+    </div>
+    <div class="stars" id="stars3"></div>
+  </div>
+
+  <!-- ==================== 主對話畫面 ==================== -->
+  <div id="screen-chat" class="screen">
+    <div id="chat-header">
+      <div class="chat-avatar-img">
+        <img src="dragon_avatar.svg" alt="龍" />
+      </div>
+      <span class="chat-name">龍 <span class="chat-phase-badge" id="phase-badge"></span></span>
+    </div>
+
+    <div id="chat-messages"></div>
+
+    <!-- 選項容器（動態生成） -->
+    <div id="choice-container" class="hidden"></div>
+  </div>
+
+  <!-- ==================== 結局畫面 ==================== -->
+  <div id="screen-ending" class="screen">
+    <div class="ending-content" id="ending-content">
+      <p class="ending-label" id="ending-label"></p>
+      <div class="ending-dragon-last" id="ending-dragon-last"></div>
+      <hr class="ending-divider" />
+      <p class="ending-title" id="ending-title"></p>
+      <p class="ending-body" id="ending-body"></p>
+      <hr class="ending-divider" />
+      <p class="ending-complete">任務完成</p>
+      <p class="ending-code">淨化密語：<span>龍膽花，象徵「寂靜的藍調，擁抱悲傷的靈魂」</span></p>
+      <button class="btn-ghost" onclick="location.reload()">再玩一次</button>
+    </div>
+    <div class="stars" id="stars4"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

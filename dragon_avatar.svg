@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- 整體模糊濾鏡 -->
+    <filter id="blur-soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.2"/>
+    </filter>
+    <!-- 邊緣模糊 -->
+    <filter id="blur-edge" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <!-- 光暈效果 -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- 夢幻模糊 -->
+    <filter id="dream" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="0.8"/>
+      <feColorMatrix type="saturate" values="0.7"/>
+    </filter>
+
+    <!-- 背景漸層 -->
+    <radialGradient id="bg-grad" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#1a2550"/>
+      <stop offset="60%" stop-color="#0d1430"/>
+      <stop offset="100%" stop-color="#060a1a"/>
+    </radialGradient>
+
+    <!-- 人物光暈 -->
+    <radialGradient id="aura" cx="50%" cy="38%" r="35%">
+      <stop offset="0%" stop-color="#6b7dcc" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#6b7dcc" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- 臉部漸層 -->
+    <radialGradient id="face-grad" cx="50%" cy="42%" r="50%">
+      <stop offset="0%" stop-color="#d0c8b8"/>
+      <stop offset="70%" stop-color="#b8b0a0"/>
+      <stop offset="100%" stop-color="#9090a0"/>
+    </radialGradient>
+
+    <!-- 頭髮漸層（銀白色） -->
+    <radialGradient id="hair-grad" cx="50%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#e8e8f0"/>
+      <stop offset="50%" stop-color="#c0c8d8"/>
+      <stop offset="100%" stop-color="#8090b0"/>
+    </radialGradient>
+
+    <!-- 衣服漸層 -->
+    <linearGradient id="cloth-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a2860"/>
+      <stop offset="50%" stop-color="#0f1840"/>
+      <stop offset="100%" stop-color="#080e28"/>
+    </linearGradient>
+
+    <!-- 遮罩：圓形裁切 -->
+    <clipPath id="circle-clip">
+      <circle cx="100" cy="100" r="98"/>
+    </clipPath>
+
+    <!-- 花朵模糊 -->
+    <filter id="flower-blur">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+  </defs>
+
+  <!-- 外圈邊框 -->
+  <circle cx="100" cy="100" r="99" fill="none" stroke="#4a5a9a" stroke-width="0.8" opacity="0.6"/>
+  <circle cx="100" cy="100" r="97" fill="none" stroke="#7080c0" stroke-width="0.3" opacity="0.3"/>
+
+  <!-- 主要畫面（圓形裁切） -->
+  <g clip-path="url(#circle-clip)">
+
+    <!-- 背景 -->
+    <rect width="200" height="200" fill="url(#bg-grad)"/>
+
+    <!-- 背景星點 -->
+    <g opacity="0.4" filter="url(#blur-soft)">
+      <circle cx="30" cy="25" r="0.8" fill="#a0b0e0"/>
+      <circle cx="170" cy="20" r="0.6" fill="#8090cc"/>
+      <circle cx="55" cy="60" r="0.5" fill="#9098cc"/>
+      <circle cx="160" cy="55" r="0.7" fill="#a0a8d8"/>
+      <circle cx="20" cy="140" r="0.6" fill="#8090cc"/>
+      <circle cx="180" cy="150" r="0.5" fill="#a0b0e0"/>
+      <circle cx="40" cy="170" r="0.7" fill="#7080b8"/>
+      <circle cx="165" cy="175" r="0.8" fill="#9098cc"/>
+    </g>
+
+    <!-- 人物光暈（背景光） -->
+    <ellipse cx="100" cy="100" rx="70" ry="80" fill="url(#aura)" filter="url(#blur-edge)"/>
+
+    <!-- 衣服/身體（下方） -->
+    <path d="M 38 200 Q 40 145 65 132 Q 80 126 100 124 Q 120 126 135 132 Q 160 145 162 200 Z"
+          fill="url(#cloth-grad)" filter="url(#blur-soft)"/>
+
+    <!-- 衣領細節 -->
+    <path d="M 82 136 Q 100 142 118 136 L 115 148 Q 100 154 85 148 Z"
+          fill="#101830" opacity="0.8" filter="url(#blur-soft)"/>
+
+    <!-- 頸部 -->
+    <ellipse cx="100" cy="128" rx="12" ry="8"
+             fill="#b8b0a0" filter="url(#dream)"/>
+
+    <!-- 頭部（臉） -->
+    <ellipse cx="100" cy="88" rx="36" ry="42"
+             fill="url(#face-grad)" filter="url(#dream)"/>
+
+    <!-- 頭髮（整體） -->
+    <ellipse cx="100" cy="62" rx="38" ry="32"
+             fill="url(#hair-grad)" filter="url(#blur-soft)"/>
+
+    <!-- 頭髮側邊 -->
+    <path d="M 63 72 Q 58 85 62 105 Q 68 88 72 80 Z"
+          fill="#c8d0e0" opacity="0.8" filter="url(#blur-soft)"/>
+    <path d="M 137 72 Q 142 85 138 105 Q 132 88 128 80 Z"
+          fill="#c8d0e0" opacity="0.8" filter="url(#blur-soft)"/>
+
+    <!-- 頭髮垂落（長髮飄逸感） -->
+    <path d="M 68 88 Q 60 110 64 130 Q 72 112 74 95 Z"
+          fill="#b8c0d0" opacity="0.6" filter="url(#blur-edge)"/>
+    <path d="M 132 88 Q 140 110 136 130 Q 128 112 126 95 Z"
+          fill="#b8c0d0" opacity="0.6" filter="url(#blur-edge)"/>
+
+    <!-- 眉毛（淡） -->
+    <path d="M 80 80 Q 90 77 97 80" stroke="#706860" stroke-width="1.2"
+          fill="none" opacity="0.7" filter="url(#dream)"/>
+    <path d="M 103 80 Q 110 77 120 80" stroke="#706860" stroke-width="1.2"
+          fill="none" opacity="0.7" filter="url(#dream)"/>
+
+    <!-- 眼睛（溫柔、憂傷） -->
+    <!-- 左眼 -->
+    <ellipse cx="87" cy="88" rx="7" ry="4.5" fill="#1a1a2a" filter="url(#dream)"/>
+    <ellipse cx="87" cy="88" rx="5" ry="3.2" fill="#2a3050"/>
+    <circle cx="87" cy="87" r="2.5" fill="#1a1530"/>
+    <circle cx="88.5" cy="86.2" r="0.8" fill="white" opacity="0.6"/>
+    <!-- 眼皮（略垂） -->
+    <path d="M 80 86 Q 87 84 94 86 Q 91 83 87 83 Q 83 83 80 86 Z"
+          fill="#c0b8a8" opacity="0.5" filter="url(#dream)"/>
+
+    <!-- 右眼 -->
+    <ellipse cx="113" cy="88" rx="7" ry="4.5" fill="#1a1a2a" filter="url(#dream)"/>
+    <ellipse cx="113" cy="88" rx="5" ry="3.2" fill="#2a3050"/>
+    <circle cx="113" cy="87" r="2.5" fill="#1a1530"/>
+    <circle cx="114.5" cy="86.2" r="0.8" fill="white" opacity="0.6"/>
+    <!-- 眼皮 -->
+    <path d="M 106 86 Q 113 84 120 86 Q 117 83 113 83 Q 109 83 106 86 Z"
+          fill="#c0b8a8" opacity="0.5" filter="url(#dream)"/>
+
+    <!-- 眼下細紋（歲月感） -->
+    <path d="M 82 92 Q 85 94 90 93" stroke="#a09888" stroke-width="0.5"
+          fill="none" opacity="0.4" filter="url(#dream)"/>
+    <path d="M 110 92 Q 113 94 118 93" stroke="#a09888" stroke-width="0.5"
+          fill="none" opacity="0.4" filter="url(#dream)"/>
+
+    <!-- 鼻子（淡） -->
+    <path d="M 100 90 Q 98 98 96 102 Q 100 104 104 102 Q 102 98 100 90"
+          fill="#b0a898" opacity="0.4" filter="url(#dream)"/>
+
+    <!-- 嘴（溫柔微閉） -->
+    <path d="M 91 110 Q 100 113 109 110" stroke="#907870" stroke-width="1.2"
+          fill="none" opacity="0.6" filter="url(#dream)"/>
+    <path d="M 93 110 Q 100 112 107 110" fill="#c08878" opacity="0.25" filter="url(#dream)"/>
+
+    <!-- 臉部老化細紋（很淡） -->
+    <path d="M 70 92 Q 73 100 70 108" stroke="#a09890" stroke-width="0.4"
+          fill="none" opacity="0.3" filter="url(#dream)"/>
+    <path d="M 130 92 Q 127 100 130 108" stroke="#a09890" stroke-width="0.4"
+          fill="none" opacity="0.3" filter="url(#dream)"/>
+
+    <!-- 龍膽花裝飾（背景漂浮） -->
+    <!-- 左上花 -->
+    <g transform="translate(28, 35) rotate(-15)" filter="url(#flower-blur)" opacity="0.55">
+      <ellipse cx="0" cy="-5" rx="3" ry="6" fill="#5060b8"/>
+      <ellipse cx="4.3" cy="-2.5" rx="3" ry="6" fill="#4858a8" transform="rotate(72)"/>
+      <ellipse cx="2.65" cy="4.05" rx="3" ry="6" fill="#5870c0" transform="rotate(144)"/>
+      <ellipse cx="-2.65" cy="4.05" rx="3" ry="6" fill="#4060b0" transform="rotate(216)"/>
+      <ellipse cx="-4.3" cy="-2.5" rx="3" ry="6" fill="#5068b8" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="2" fill="#7888d0"/>
+    </g>
+
+    <!-- 右上花 -->
+    <g transform="translate(168, 28) rotate(20)" filter="url(#flower-blur)" opacity="0.5">
+      <ellipse cx="0" cy="-4.5" rx="2.5" ry="5.5" fill="#4858b0"/>
+      <ellipse cx="3.9" cy="-2.2" rx="2.5" ry="5.5" fill="#5060b8" transform="rotate(72)"/>
+      <ellipse cx="2.4" cy="3.7" rx="2.5" ry="5.5" fill="#4868b8" transform="rotate(144)"/>
+      <ellipse cx="-2.4" cy="3.7" rx="2.5" ry="5.5" fill="#5060a8" transform="rotate(216)"/>
+      <ellipse cx="-3.9" cy="-2.2" rx="2.5" ry="5.5" fill="#4868c0" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="1.8" fill="#7880cc"/>
+    </g>
+
+    <!-- 左下花 -->
+    <g transform="translate(22, 162) rotate(10)" filter="url(#flower-blur)" opacity="0.4">
+      <ellipse cx="0" cy="-4" rx="2.2" ry="5" fill="#3850a8"/>
+      <ellipse cx="3.5" cy="-2" rx="2.2" ry="5" fill="#4058b0" transform="rotate(72)"/>
+      <ellipse cx="2.1" cy="3.2" rx="2.2" ry="5" fill="#3860b0" transform="rotate(144)"/>
+      <ellipse cx="-2.1" cy="3.2" rx="2.2" ry="5" fill="#4050a0" transform="rotate(216)"/>
+      <ellipse cx="-3.5" cy="-2" rx="2.2" ry="5" fill="#3858b0" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="1.5" fill="#6878c0"/>
+    </g>
+
+    <!-- 右下花 -->
+    <g transform="translate(175, 158) rotate(-25)" filter="url(#flower-blur)" opacity="0.45">
+      <ellipse cx="0" cy="-5" rx="2.8" ry="5.5" fill="#5060b8"/>
+      <ellipse cx="4.1" cy="-2.5" rx="2.8" ry="5.5" fill="#4858b0" transform="rotate(72)"/>
+      <ellipse cx="2.5" cy="4" rx="2.8" ry="5.5" fill="#5870c0" transform="rotate(144)"/>
+      <ellipse cx="-2.5" cy="4" rx="2.8" ry="5.5" fill="#4060b0" transform="rotate(216)"/>
+      <ellipse cx="-4.1" cy="-2.5" rx="2.8" ry="5.5" fill="#5068b8" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="2" fill="#7888d0"/>
+    </g>
+
+    <!-- 飄落花瓣 -->
+    <g filter="url(#flower-blur)" opacity="0.3">
+      <ellipse cx="50" cy="100" rx="1.5" ry="4" fill="#5878c8" transform="rotate(-30, 50, 100)"/>
+      <ellipse cx="152" cy="80" rx="1.2" ry="3.5" fill="#4868b8" transform="rotate(20, 152, 80)"/>
+      <ellipse cx="35" cy="55" rx="1" ry="3" fill="#6080c8" transform="rotate(-50, 35, 55)"/>
+      <ellipse cx="165" cy="120" rx="1.3" ry="3.8" fill="#4870b8" transform="rotate(40, 165, 120)"/>
+    </g>
+
+    <!-- 整體夢幻覆蓋層（讓畫面更有模糊神秘感） -->
+    <rect width="200" height="200" fill="#0a1230" opacity="0.15" filter="url(#blur-edge)"/>
+
+    <!-- 邊緣漸層遮罩（暈染效果） -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#060a1a"/>
+    </radialGradient>
+    <circle cx="100" cy="100" r="98" fill="url(#vignette)"/>
+
+  </g>
+
+  <!-- 外圈裝飾光暈 -->
+  <circle cx="100" cy="100" r="98" fill="none" stroke="#7080c0" stroke-width="0.5" opacity="0.4"/>
+</svg>
